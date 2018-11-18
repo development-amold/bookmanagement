@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
 		if params.has_key?(:q) && !params[:q].blank?
 			@res = Author.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a + Book.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a + Review.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a  	
 		end
-		json_response(@res)
+		render :json => @res
 	end	
 
 	private
