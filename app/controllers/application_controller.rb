@@ -2,6 +2,14 @@ class ApplicationController < ActionController::API
 	include ExceptionHandler  #----Added Custom Exception Responses to client
 	before_action :authorize_api_request
 
+	def search
+		@res = []
+		if params.has_key?(:q) && !params[:q].blank?
+			@res = Author.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a + Book.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a + Review.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a  	
+		end
+		json_response(@res)
+	end	
+
 	private
 
     def authorize_api_request

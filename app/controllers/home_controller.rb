@@ -22,14 +22,6 @@ class HomeController < ActionController::API
 	    end		
 	end
 
-	def search
-		@res = []
-		if params.has_key?(:q) && !params[:q].blank?
-			@res = Author.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a + Book.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a + Review.only(:name).where(:name =>/.*#{params[:q]}.*/i).to_a  	
-		end
-		json_response(@res)
-	end
-
 	private
 
     def author_params

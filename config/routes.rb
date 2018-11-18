@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 		resources :books do
 			resources :reviews
 		end
-		get 'search' => "home#search"
+		get 'search' => "application#search"
 		post "login" => "home#login"
 		post "sign_up" => "home#sign_up"
 	end  
