@@ -162,15 +162,8 @@ test:
 
 production:
   clients:
-    # Defines the default client. (required)
     default:
-      database: heroku_xsw4gmzh
-      # mongodb://heroku_xsw4gmzh:ccq1ag71odqjo40v438jh4b7j5@ds211694.mlab.com:11694/heroku_xsw4gmzh
-      hosts:
-        - book-management-api.herokuapp.com:27017
+      uri: <%= ENV['MONGODB_URI'] %>
       options:
-        read:
-          mode: :primary
-        max_pool_size: 1
-        user: heroku_xsw4gmzh 
-        password: ccq1ag71odqjo40v438jh4b7j5
+        skip_version_check: true
+      safe: true  
